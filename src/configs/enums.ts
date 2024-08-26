@@ -21,7 +21,7 @@ export enum PRIVATE_ROUTES {
 }
 
 export enum API_ENDPOINTS {
-  BASE_API = "http://localhost:8080",
+  BASE_API = "https://codernest-backend.vercel.app",
   USERS = "/api/v1/users",
   SNIPPETS = "/api/v1/snippets",
   TAGS = "/api/v1/tags",
