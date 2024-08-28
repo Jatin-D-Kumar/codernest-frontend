@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Delete as DeleteIcon } from "@mui/icons-material";
 import { CircularProgress, IconButton } from "@mui/material";
 
@@ -10,9 +10,12 @@ import {
   setErrorToast,
   setSuccessToast,
 } from "../../redux/features/toastSlice";
+import { RootState } from "../../redux/store";
+import { setTagValue } from "../../redux/features/tagSlice";
 
 const TagDelete = ({ id }: { id: string }) => {
   const dispatch = useDispatch();
+  const tagValue = useSelector((state: RootState) => state.tag.tagValue);
 
   const [deleteTag, deleteTagResponse] = useDeleteTagMutation();
 
@@ -22,6 +25,9 @@ const TagDelete = ({ id }: { id: string }) => {
 
   useEffect(() => {
     if (deleteTagResponse.isSuccess) {
+      if (tagValue === id) {
+        dispatch(setTagValue(""));
+      }
       dispatch(setSuccessToast(TOAST_MSG.TAG_DELETE_SUCCESS));
     }
     if (deleteTagResponse.isError) {
@@ -35,6 +41,8 @@ const TagDelete = ({ id }: { id: string }) => {
     deleteTagResponse.error,
     deleteTagResponse.isError,
     deleteTagResponse.isSuccess,
+    tagValue,
+    id,
   ]);
 
   if (deleteTagResponse.isLoading) {
