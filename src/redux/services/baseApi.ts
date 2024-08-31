@@ -104,6 +104,5 @@ export const baseApi = createApi({
   endpoints: () => ({}),
   refetchOnMountOrArgChange: true,
   refetchOnReconnect: true,
-  refetchOnFocus: false,
-  keepUnusedDataFor: 1,
+  refetchOnFocus: true,
 });

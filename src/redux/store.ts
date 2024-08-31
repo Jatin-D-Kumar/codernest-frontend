@@ -5,7 +5,7 @@ import toastReducer from "./features/toastSlice";
 import navbarReducer from "./features/navbarSlice";
 import snippetReducer from "./features/snippetSlice";
 import { baseApi } from "./services/baseApi";
-// import { setupListeners } from "@reduxjs/toolkit/query";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 
@@ -36,7 +36,7 @@ export const persistor = persistStore(store);
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
 // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
-// setupListeners(store.dispatch);
+setupListeners(store.dispatch);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

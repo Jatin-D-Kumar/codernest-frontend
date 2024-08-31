@@ -1,6 +1,6 @@
 import ReactJoyride, { CallBackProps, STATUS } from "react-joyride";
 import { tourSteps } from "../configs/constants";
-import { useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { loggedInUserId } from "../redux/features/userSlice";
@@ -9,13 +9,14 @@ const Tour: React.FC = () => {
   const theme = useTheme();
   const userId = useSelector(loggedInUserId);
   const [startTour, setStartTour] = useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     const tourCompleted = localStorage.getItem(`tourCompleted_${userId}`);
-    if (tourCompleted !== "true") {
+    if (!isMobile && tourCompleted !== "true") {
       setStartTour(true);
     }
-  }, [userId]);
+  }, [isMobile, userId]);
 
   const handleJoyrideCallback = (data: CallBackProps) => {
     const { status } = data;
