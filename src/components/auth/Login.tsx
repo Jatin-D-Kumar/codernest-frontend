@@ -151,8 +151,11 @@ const Login = () => {
         >
           {TEXT.WELCOME_BACK}
         </Typography>
-        <Typography sx={{ fontSize: "1rem", lineHeight: 1.5, mb: 2 }}>
+        <Typography sx={{ fontSize: "1rem", lineHeight: 1.5 }}>
           {MESSAGE.LOGIN_TO_MANAGE}
+        </Typography>
+        <Typography sx={{ fontSize: "0.8rem", lineHeight: 1, mb: 2 }}>
+          Note: Use Credentials "testuser", "Testuser@12345"
         </Typography>
         <form onSubmit={formik.handleSubmit}>
           <FormikTextField
